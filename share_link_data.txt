@@ -1,0 +1,32 @@
+卖设计工作台 · 分享链接与数据说明
+
+=== 一、设计作品库（只读分享）===
+主链接（GitHub Pages，长期有效）：
+https://wowowowowodao.github.io/mobileworkbench/?file=4&t=portfolio&m=view
+  - 由 App 内「设计作品库 → 分享查看」按钮一键生成，只读，对方无法修改。
+  - file=4 自动加载同域 4 个分片（share-assets/data.0~3.json）。
+  - 对方打开直接看 6 作品 + 站酷主页 + 4 设计项目 + 2 张 GIF 动图（原样不压缩）。
+  - 国内访问偶发偏慢，但稳定不掉。代码仓库：github.com/wowowowowodao/mobileworkbench
+
+备用（CloudStudio 沙箱，怕回收）：
+https://15ed2a4986fb418abb2fb9156b827f39.app.workbuddy.link/?file=4&t=portfolio&m=view
+
+=== 二、工作信息管理（可看可改分享）===
+  - 由 App 内「工作信息 → 分享编辑」按钮生成（基于 JSONBin 云端）。
+  - 链接形如 ?share=<id>&t=work&m=edit，对方打开可查看并编辑，本机收到修改提示与记录。
+  - 该链接数据存于云端，不依赖本地，任意设备打开即用。
+
+=== 三、任意新电脑都有数据（云端基线）===
+  - 作品库（公众号文章 + 站酷 + 设计项目）已托管在上面的 ?file=4 分片。
+  - 新电脑首次打开 App（本地为空时）会自动从 ?file=4 载入基线；也可点「作品库 → 从云端恢复」手动覆盖本机。
+  - 工作信息：通过「分享编辑」链接或 JSONBin 同步保持云端可用。
+
+=== 四、图片大小 ===
+  - GIF：原样保留，不压缩、不限大小（动图不动）。
+  - 其它图片：上传时统一压缩到最长边 2000px、质量 0.85（桌面/移动端一致），不再强制压到 1280。
+  - 分享数据托管在服务器，不受本机 localStorage 体积限制。
+
+=== 更新记录 ===
+2026-08-16 早：迁移到 GitHub Pages（Gitee Pages 已下线、CODING 停注册、cnb.cool 非静态托管）。
+2026-08-16 晚：修复作品页封面图（url 加引号）；分享查看改服务器短链(只读)；新电脑自动载入云端基线 + 从云端恢复按钮；放宽图片尺寸到 2000px。
+            代码已部署 CloudStudio(z8) 验证；GitHub 需重新推送 master→main 才生效（见对话）。

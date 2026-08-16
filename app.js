@@ -19,6 +19,9 @@ const storage = {
   set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch { return false; } }
 };
 
+/* 是否为「分享查看」只读模式（在分享链接打开时为 true；模块顶部声明，避免 TDZ） */
+let isSharedView = false;
+
 function showToast(msg) {
   const t = $('#toast');
   t.textContent = msg;
@@ -658,22 +661,22 @@ function renderDesignProjects() {
     const c = pickColor(dp.name);
     const count = (dp.images || []).length;
     const coverStyle = cover
-      ? `background-image:url(${cover});color:#fff;`
+      ? `background-image:url("${cover}");color:#fff;`
       : `background:${c.bg};color:${c.fg};`;
     return `
     <div class="design-project" data-id="${dp.id}">
       <div class="design-project-cover" style="${coverStyle}">
         <div class="dp-cover-overlay">
           <div class="dp-cover-title">${escapeHtml(dp.name)}</div>
-          <div class="dp-cover-count">${count} 张</div>
+          <div class="dp-cover-count">${count} 张 · 点击看大图</div>
         </div>
       </div>
-      <div class="dp-actions-bar">
+      ${isSharedView ? '' : `<div class="dp-actions-bar">
         <button data-act="edit">编辑</button>
         <button data-act="del">删除</button>
-      </div>
+      </div>`}
     </div>
-  `;
+    `;
   }).join('');
 }
 
@@ -724,7 +727,7 @@ function resizeImage(file, maxDim = 600, cb) {
     c.width  = Math.max(1, Math.round(img.width * scale));
     c.height = Math.max(1, Math.round(img.height * scale));
     c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-    cb(c.toDataURL('image/jpeg', 0.8));
+    cb(c.toDataURL('image/jpeg', 0.85));
   };
   img.onerror = () => cb('');
   img.src = URL.createObjectURL(file);
@@ -739,7 +742,7 @@ function handleDesignImages(files, cb) {
   list.forEach(file => {
     if (!file.type.startsWith('image/')) { count++; if (count === list.length) cb(results); return; }
     if (file.type === 'image/gif' && file.size > 2 * 1024 * 1024) gifTooBig = true;
-    resizeImage(file, 1280, (dataUrl) => {
+    resizeImage(file, 2000, (dataUrl) => {
       results.push(dataUrl);
       if (++count === list.length) {
         if (gifTooBig) showToast('部分 GIF 较大，可能无法保存，建议压缩后再上传');
@@ -1535,7 +1538,6 @@ async function autoPullOnLoad() {
  * ============================================================ */
 let cloudWorkId = storage.get('wb_work_sync_id', null);
 let cloudWorkMeta = { version: 0, lastEditor: '', lastEditAt: '', changelog: [] };
-let isSharedView = false;
 
 function persistWork(summary) {
   storage.set('wb_work_projects', workProjects);
@@ -1589,47 +1591,12 @@ async function shareWorkEdit() {
 function b64encode(str){ try { return btoa(unescape(encodeURIComponent(str))); } catch(e){ return btoa(str); } }
 function b64decode(b64){ try { return decodeURIComponent(escape(atob(b64))); } catch(e){ return atob(b64); } }
 async function sharePortfolioView() {
-  showToast('正在生成作品库分享链接…');
-  const pf  = storage.get('wb_portfolio', []);
-  const zc  = storage.get('wb_zcool', {});
-  const dps = storage.get('wb_design_projects', []);
-  const zcC = Object.assign({}, zc);
-  if (zcC.cover) zcC.cover = await compressDataUrl(zcC.cover, 320, 0.6);
+  // 生成「服务器托管短链」：?file=4 自动加载同域 share-assets/data.0~3.json
+  // 只读、对方打开即看全部作品与动图；链接约 80 字符，复制可靠。
+  // 该快照反映已托管在服务器上的作品库（与桌面端/移动端同源，任意设备打开一致）。
   const base = location.origin + location.pathname;
-
-  const key = binKey();
-  // 1) 已配置云端 Key：优先用「极短云端链接」——URL 仅一两百字符，复制可靠，
-  //    图片存云端且更清晰（480px），对方联网即可查看（Key 随链接一起下发）
-  if (key) {
-    try {
-      // 多级压缩，确保整包 < 100KB（JSONBin 免费版单 bin 上限约 100KB），否则会 403 失败并降级成长链
-      const dpsCloud = await sharePortfolioCloudFit(dps, pf, zcC, 95000);
-      const payloadCloud = { type: 'portfolio', data: { portfolio: pf, zcool: zcC, designProjects: dpsCloud } };
-      const id = await cloudCreate(payloadCloud);
-      const link = base + '?share=' + encodeURIComponent(id) + '&t=portfolio&m=view&k=' + encodeURIComponent(key);
-      showShareResult('作品库查看链接（图片已存云端，链接极短、复制可靠，对方联网即可查看）：', link);
-      return;
-    } catch (e) {
-      // 云端失败：降级为内联（保留全部图片，绝不清空），并提示链接较长
-      const dpsInline = await Promise.all(dps.map(async dp => Object.assign({}, dp, {
-        images: await compressImages(dp.images || [], 200, 0.5)
-      })));
-      const payloadInline = { type: 'portfolio', data: { portfolio: pf, zcool: zcC, designProjects: dpsInline } };
-      const b64 = b64encode(JSON.stringify(payloadInline));
-      const link = base + '?snap=' + encodeURIComponent(b64) + '&t=portfolio&m=view';
-      showShareResult('云端生成失败，已降级为离线快照（链接较长，请用浏览器完整打开）：', link);
-      return;
-    }
-  }
-
-  // 2) 无 Key：只能内联（离线可看、无需联网，但链接长）。提示去设置配置 Key 可生成极短链接
-  const dpsInline = await Promise.all(dps.map(async dp => Object.assign({}, dp, {
-    images: await compressImages(dp.images || [], 200, 0.5)
-  })));
-  const payloadInline = { type: 'portfolio', data: { portfolio: pf, zcool: zcC, designProjects: dpsInline } };
-  const b64 = b64encode(JSON.stringify(payloadInline));
-  const link = base + '?snap=' + encodeURIComponent(b64) + '&t=portfolio&m=view';
-  showShareResult('作品库查看快照（只读，离线可看；未配置云端 Key 故链接较长，去 ⚙ 设置配置 Key 可生成极短链接）：', link);
+  const link = base + '?file=4&t=portfolio&m=view';
+  showShareResult('作品库查看链接（只读，对方打开即看全部作品与动图，无法修改）：', link);
 }
 /* 多级压缩设计项目图片，确保整包 JSON 不超过 maxBytes（JSONBin 免费版单 bin 上限约 100KB），
    尽量让云端短链成功；逐级降质直到满足，或最终仅保留每项目首图 */
@@ -1744,6 +1711,33 @@ async function loadPortfolioFromFile(fileParam) {
   } catch (e) { showToast('加载共享作品库失败：' + e.message); }
 }
 
+/* 启动/手动：从云端 ?file=4 载入作品库基线（公众号文章 + 站酷 + 设计项目）
+   仅在非分享视图、且本地为空（或 force）时填充，保证任意新电脑打开都有数据；绝不悄悄覆盖本地已有数据 */
+async function loadCloudBaseline(force = false) {
+  if (isSharedView) return;
+  const hasLocal = storage.get('wb_portfolio', null) && storage.get('wb_zcool', null) && storage.get('wb_design_projects', null);
+  if (hasLocal && !force) return;
+  try {
+    const pageDir = location.href.split('?')[0].replace(/[^/]*$/, '');
+    const urls = Array.from({ length: 4 }, (_, i) => pageDir + 'share-assets/data.' + i + '.json');
+    const merged = { portfolio: null, zcool: null, designProjects: [] };
+    for (const u of urls) {
+      const r = await fetch(u, { cache: 'no-store' });
+      if (!r.ok) return;
+      const rec = await r.json();
+      const data = rec.data || rec;
+      if (data.portfolio) merged.portfolio = data.portfolio;
+      if (data.zcool) merged.zcool = data.zcool;
+      if (Array.isArray(data.designProjects)) merged.designProjects = merged.designProjects.concat(data.designProjects);
+    }
+    if (merged.portfolio) { portfolio = merged.portfolio; storage.set('wb_portfolio', portfolio); }
+    if (merged.zcool) { zcoolConfig = merged.zcool; storage.set('wb_zcool', zcoolConfig); }
+    if (merged.designProjects.length) { designProjects = merged.designProjects; storage.set('wb_design_projects', designProjects); }
+    renderPortfolio(); renderZcool(); renderDesignProjects();
+    showToast(force ? '已从云端恢复作品库' : '已从云端载入作品库基线');
+  } catch (e) { /* 忽略 */ }
+}
+
 /* ============================================================
  * 通知与修改记录（顶栏铃铛）
  * ============================================================ */
@@ -1849,6 +1843,9 @@ $('#importFile').addEventListener('change', (e) => {
 });
 $('#shareWork').addEventListener('click', shareWorkEdit);
 $('#sharePortfolio').addEventListener('click', sharePortfolioView);
+$('#restoreCloud').addEventListener('click', () => {
+  if (confirm('从云端恢复作品库将覆盖本机当前作品库数据，确定继续？')) loadCloudBaseline(true);
+});
 
 function showShareResult(desc, link) {
   $('#shareResultDesc').textContent = desc;
@@ -1917,6 +1914,9 @@ async function robustCopy(text) {
   updateBellBadge();
   startPolling();
 })();
+
+/* 新电脑首次打开：若本地作品库为空，自动从云端载入基线，保证任意设备都有数据 */
+loadCloudBaseline();
 
 /* 启动时尝试从云端拉取另一端的最新数据 */
 autoPullOnLoad();
