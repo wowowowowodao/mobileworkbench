@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#004C80">
+  <title>安装 · 卖设计手机工作台</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: #004C80 url('phone-bg.jpg') center top / cover no-repeat fixed;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 24px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.94);
+      color: #1a1a1a;
+      width: 100%; max-width: 360px;
+      border-radius: 22px;
+      padding: 36px 24px 30px;
+      text-align: center;
+      box-shadow: 0 14px 44px rgba(0, 0, 0, 0.3);
+    }
+    .logo {
+      width: 100px; height: 100px;
+      border-radius: 22px;
+      margin: 0 auto 18px;
+      display: block;
+    }
+    h1 { font-size: 22px; margin-bottom: 6px; color: #004C80; }
+    .sub { font-size: 14px; color: #666; margin-bottom: 26px; line-height: 1.5; }
+    .btn {
+      display: block; width: 100%;
+      background: #004C80; color: #fff;
+      border: none; border-radius: 14px;
+      padding: 17px; font-size: 18px; font-weight: 700;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    .btn:active { opacity: .85; }
+    .ok { margin-top: 18px; font-size: 15px; color: #0a8a3e; font-weight: 700; display: none; }
+    .hint {
+      margin-top: 18px; font-size: 13px; color: #777;
+      line-height: 1.7; display: none; text-align: left;
+      background: #f4f6f8; border-radius: 12px; padding: 14px 16px;
+    }
+    .hint b { color: #004C80; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="icon-512.png" alt="卖设计">
+    <h1>卖设计 · 手机工作台</h1>
+    <p class="sub">点下面的按钮，把工作台装到手机桌面，<br>像 App 一样随时联网打开</p>
+    <button class="btn" id="installBtn">📲 安装到手机</button>
+    <div class="ok" id="okMsg">✅ 已安装！回到桌面就能看到「卖设计」</div>
+    <div class="hint" id="hint">
+      没弹出安装框？手动装也很快：<br>
+      ① 用手机 <b>Chrome</b> 浏览器打开本页<br>
+      ② 点右上角 <b>⋮</b> → <b>添加到主屏幕</b><br>
+      ③ 点「添加」，桌面就出现图标了
+    </div>
+  </div>
+
+  <script>
+    let deferredPrompt = null;
+    const btn = document.getElementById('installBtn');
+    const hint = document.getElementById('hint');
+    const okMsg = document.getElementById('okMsg');
+
+    function registerSW() {
+      if ('serviceWorker' in navigator &&
+          (location.protocol === 'https:' || location.hostname === 'localhost')) {
+        navigator.serviceWorker.register('sw.js?v=m20260816t').catch(() => {});
+      }
+    }
+    window.addEventListener('load', registerSW);
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    btn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') okMsg.style.display = 'block';
+        deferredPrompt = null;
+      } else {
+        // 浏览器没给自动安装入口（多半之前点过"不"），展示手动步骤
+        hint.style.display = 'block';
+        btn.textContent = '⚙️ 看手动安装步骤';
+      }
+    });
+
+    window.addEventListener('appinstalled', () => {
+      okMsg.style.display = 'block';
+      btn.style.display = 'none';
+      hint.style.display = 'none';
+    });
+
+    // 兜底：3 秒后若仍没捕获到安装事件，提示手动方案
+    setTimeout(() => {
+      if (!deferredPrompt) {
+        hint.style.display = 'block';
+        btn.textContent = '⚙️ 看手动安装步骤';
+      }
+    }, 3000);
+  </script>
+</body>
+</html>

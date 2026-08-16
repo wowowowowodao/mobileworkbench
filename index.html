@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#004C80">
+  <meta name="application-name" content="卖设计">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="卖设计">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>卖设计 · 手机工作台</title>
+  <link rel="stylesheet" href="styles-mobile-v2.css?v=m20260816t">
+</head>
+<body>
+  <!-- 顶部栏：标题 + 时钟日期 + 铃铛设置 -->
+  <header class="topbar">
+    <div class="topbar-row topbar-row-1">
+      <div class="topbar-tools">
+        <button class="topbar-tool" id="openBell" aria-label="修改通知">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6V11a6 6 0 0 0-5-5.91V4a1 1 0 0 0-2 0v1.09A6 6 0 0 0 6 11v5l-2 2v1h16v-1l-2-2z"/>
+          </svg>
+          <span class="bell-badge" id="bellBadge" hidden>●</span>
+        </button>
+        <button class="topbar-tool" id="openSettings" aria-label="云端共享设置">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path fill="currentColor" d="M19.14 12.94a7.42 7.42 0 0 0 0-1.88l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.07 7.07 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.9 2h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.59.24-1.13.55-1.62.94l-2.39-.96a.5.5 0 0 0-.6.22L2.67 8.48a.5.5 0 0 0 .12.64l2.03 1.58a7.42 7.42 0 0 0 0 1.88L2.79 14.16a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .6.22l2.39-.96c.49.39 1.03.7 1.62.94l.36 2.54a.5.5 0 0 0 .5.42h3.84a.5.5 0 0 0 .5-.42l.36-2.54c.59-.24 1.13-.55 1.62-.94l2.39.96a.5.5 0 0 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="topbar-row topbar-row-2">
+      <div class="live-clock" id="liveClock">--:--:--</div>
+      <div class="live-date" id="liveDate">----年--月--日 星期-</div>
+    </div>
+    <div class="brand-banner">
+      <img class="brand-banner-img" src="brand-title.png" alt="卖设计的工作台">
+    </div>
+  </header>
+
+  <!-- 通知面板：浮在顶栏下方 -->
+  <div class="bell-panel" id="bellPanel" hidden>
+    <div class="bell-panel-head">
+      <span>修改通知</span>
+      <button class="bell-close" id="closeBell" aria-label="关闭">×</button>
+    </div>
+    <div class="bell-list" id="bellList"></div>
+  </div>
+
+  <!-- 标签栏：3 个 Tab + 刷新 -->
+  <nav class="tabbar" id="tabbar">
+    <div class="tabbar-tabs">
+      <button class="tab active" data-index="0">
+        <span class="tab-mark"></span>
+        <span class="tab-label">每日资讯</span>
+      </button>
+      <button class="tab" data-index="1">
+        <span class="tab-mark"></span>
+        <span class="tab-label">设计作品库</span>
+      </button>
+      <button class="tab" data-index="2">
+        <span class="tab-mark"></span>
+        <span class="tab-label">工作信息管理</span>
+      </button>
+    </div>
+    <button class="tabbar-refresh" id="pageRefresh" aria-label="刷新当前页">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <path fill="currentColor" d="M17.65 6.35A7.95 7.95 0 0 0 12 4a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 6.67-3.56L17.65 14A6 6 0 0 1 12 18a6 6 0 0 1-6-6 6 6 0 0 1 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- 页面容器：可横向滑动 -->
+  <div class="pages-viewport">
+    <div class="pages-track" id="pagesTrack">
+
+      <!-- ============ 页面 1：每日资讯 ============ -->
+      <section class="page page-info" data-index="0" aria-label="每日资讯">
+        <div class="page-inner">
+
+          <!-- 日历卡片 -->
+          <div class="card card-calendar">
+            <div class="cal-head">
+              <div class="cal-today-block">
+                <div class="cal-today-date" id="calTodayDate">今天 8月15日</div>
+                <div class="cal-today-lunar" id="calTodayLunar">农历七月初三</div>
+              </div>
+      <div class="cal-year-block">
+        <button class="cal-nav-btn" id="calPrev" aria-label="上个月">‹</button>
+        <div>
+          <div class="cal-year" id="calYear">2026</div>
+          <div class="cal-month" id="calMonth">08</div>
+        </div>
+        <button class="cal-nav-btn" id="calNext" aria-label="下个月">›</button>
+      </div>
+            </div>
+            <div class="cal-weekdays">
+              <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="cal-days" id="calDays"></div>
+          </div>
+
+          <!-- 天气卡片 -->
+          <div class="card card-weather">
+            <div class="weather-top">
+              <div class="weather-info">
+                <div class="weather-row1">
+                  <span class="weather-city" id="weatherCity">郑州</span>
+                </div>
+                <div class="weather-row2">
+                  <span class="weather-temp" id="weatherTemp">--°</span>
+                  <span class="weather-icon" id="weatherIcon">⛅</span>
+                </div>
+                <div class="weather-row3">
+                  <span class="weather-now" id="weatherNow">加载中…</span>
+                </div>
+              </div>
+            </div>
+            <div class="weather-mid">
+              <div class="weather-forecast" id="weatherForecast">
+                <span class="forecast-tag" id="weatherUpcoming">--</span>
+                <span class="forecast-tag" id="weatherTomorrow">--</span>
+              </div>
+            </div>
+            <div class="weather-bottom">
+              <button class="btn-outline" id="editCity">切换城市</button>
+              <button class="btn-outline" id="locateCity">定位</button>
+            </div>
+          </div>
+
+          <!-- 节日 / 纪念日 卡片 -->
+          <div class="card card-holidays">
+            <h3 class="card-title">近七天重点节日 · 纪念日</h3>
+            <ul class="holiday-list" id="holidayList"></ul>
+          </div>
+
+          <!-- 热点聚合卡片 -->
+          <div class="card card-trends">
+            <div class="trends-head">
+              <h3 class="card-title">热点聚合</h3>
+              <div class="trend-tabs" id="trendTabs">
+                <button class="trend-tab" data-source="xiaohongshu">小红书</button>
+                <button class="trend-tab" data-source="weibo">微博</button>
+                <button class="trend-tab active" data-source="qqnews">腾讯新闻</button>
+                <button class="trend-tab" data-source="ifeng">凤凰新闻</button>
+                <button class="trend-tab" data-source="adquan">广告门</button>
+                <button class="trend-tab" data-source="digitaling">数英</button>
+                <button class="trend-tab" data-source="shejijingsai">设计竞赛网</button>
+                <button class="trend-tab" data-source="uisdc">优设网</button>
+              </div>
+            </div>
+            <ol class="trend-list" id="trendList"></ol>
+            <div class="trend-empty" id="trendEmpty" hidden>点击刷新获取最新热点</div>
+            <div class="trends-foot">
+              <span class="trend-update" id="trendUpdate">上次更新：--</span>
+              <button class="btn-text" id="refreshTrends">立即刷新热点</button>
+            </div>
+          </div>
+
+          <div class="page-footer-space"></div>
+        </div>
+      </section>
+
+      <!-- ============ 页面 2：设计作品库 ============ -->
+      <section class="page page-portfolio" data-index="1" aria-label="设计作品库">
+        <div class="page-inner">
+
+          <!-- 顶部操作 -->
+          <div class="page-actions">
+            <span class="page-actions-title">作品库</span>
+            <button class="btn-outline" id="sharePortfolio">分享查看</button>
+          </div>
+
+          <!-- 公众号文章：可折叠 -->
+          <div class="card card-wechat">
+            <div class="source-head" id="wechatToggle">
+              <div class="source-head-left">
+                <span class="source-emoji">📰</span>
+                <span class="source-title">公众号文章</span>
+                <span class="source-count" id="wechatCount">0 篇</span>
+              </div>
+              <button class="source-toggle" id="wechatToggleBtn">展开</button>
+            </div>
+            <div class="source-body" id="wechatBody">
+              <div class="source-toolbar">
+                <a class="btn-outline" href="https://mp.weixin.qq.com/s/0--AHBCkB1DnfnzCD70Xyg" target="_blank" rel="noopener">打开公众号</a>
+                <button class="btn-primary" id="addPortfolioProject">+ 添加文章</button>
+              </div>
+              <div class="portfolio-list" id="portfolioList"></div>
+            </div>
+          </div>
+
+          <!-- 站酷主页 -->
+          <div class="card card-zcool">
+            <div class="source-head">
+              <div class="source-head-left">
+                <span class="source-emoji">🎨</span>
+                <span class="source-title">站酷主页</span>
+              </div>
+              <div class="source-head-right">
+                <button class="source-toggle" id="editZcool">编辑</button>
+                <a class="btn-outline" id="zcoolVisit" href="https://www.zcool.com.cn/u/ZNDA5NDcwMA==" target="_blank" rel="noopener">访问站酷</a>
+              </div>
+            </div>
+            <a class="zcool-preview" id="zcoolLink" href="https://www.zcool.com.cn/u/ZNDA5NDcwMA==" target="_blank" rel="noopener">
+              <div class="zcool-cover" id="zcoolCover">
+                <span class="zcool-cover-emoji">🎨</span>
+              </div>
+              <div class="zcool-info">
+                <div class="zcool-title" id="zcoolTitle">卖设计 · 站酷</div>
+                <div class="zcool-url" id="zcoolUrlText">https://www.zcool.com.cn/u/ZNDA5NDcwMA==</div>
+              </div>
+            </a>
+          </div>
+
+          <!-- 我的知识库 (ima) -->
+      <div class="card card-ima" id="openIma">
+        <div class="ima-icon">ima</div>
+        <div class="ima-body">
+          <div class="ima-title">我的知识库</div>
+          <div class="ima-sub">ima 个人知识库</div>
+        </div>
+        <span class="ima-arrow">→</span>
+      </div>
+
+          <!-- 设计项目 -->
+          <div class="card card-projects">
+            <div class="projects-head">
+              <h3 class="card-title">设计项目</h3>
+              <button class="btn-primary" id="addDesignProject">+ 新建项目</button>
+            </div>
+            <div class="design-project-list" id="designProjectList"></div>
+          </div>
+
+          <div class="page-footer-space"></div>
+        </div>
+      </section>
+
+      <!-- ============ 页面 3：工作信息管理 ============ -->
+      <section class="page page-work" data-index="2" aria-label="工作信息管理">
+        <div class="page-inner">
+
+          <!-- 顶部操作 -->
+          <div class="page-actions">
+            <span class="page-actions-title">工作信息</span>
+            <div class="page-actions-buttons">
+              <button class="btn-outline" id="shareWork">分享编辑</button>
+              <button class="btn-outline" id="openTrash">回收站<span class="trash-badge" id="trashBadge" hidden>0</span></button>
+              <button class="btn-outline" id="workAdminToggle">管理员视图</button>
+            </div>
+          </div>
+
+          <!-- 4 个汇总统计 -->
+          <div class="work-summary" id="workSummary">
+            <button class="summary-item" data-filter="all">
+              <span class="summary-num" id="summaryTotal">0</span>
+              <span class="summary-label">总项目</span>
+            </button>
+            <button class="summary-item" data-filter="progress">
+              <span class="summary-num" id="summaryActive">0</span>
+              <span class="summary-label">进行中</span>
+            </button>
+            <button class="summary-item" data-filter="overdue">
+              <span class="summary-num" id="summaryOverdue">0</span>
+              <span class="summary-label">已超时</span>
+            </button>
+            <button class="summary-item" data-filter="done">
+              <span class="summary-num" id="summaryDone">0</span>
+              <span class="summary-label">已完成</span>
+            </button>
+          </div>
+
+          <!-- 当前筛选提示 -->
+          <div class="work-filter-bar" id="workFilterBar" hidden>
+            <span id="workFilterLabel"></span>
+            <button class="btn-text" id="workClearFilter">↩ 恢复全部</button>
+          </div>
+
+          <!-- 48h 截止红色提示 -->
+          <div class="deadline-alert" id="deadlineAlert" hidden></div>
+
+          <!-- 项目列表 -->
+          <div class="card card-work">
+            <div class="work-toolbar">
+              <h3 class="card-title">项目列表</h3>
+              <button class="btn-primary" id="addWorkProject">+ 新建项目</button>
+            </div>
+            <div class="work-list" id="workList"></div>
+          </div>
+
+          <div class="page-footer-space"></div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- ============ 模态：新建/编辑工作项目 ============ -->
+  <div class="modal" id="workModal" hidden>
+    <div class="modal-backdrop" data-close="workModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="workModalTitle">新建项目</h3>
+        <button class="modal-close" data-close="workModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <label>项目名称<input type="text" id="projName" placeholder="例如：品牌升级"></label>
+        <div class="form-row">
+          <label>开始时间<input type="date" id="projStart"></label>
+          <label>预计结束<input type="date" id="projEnd"></label>
+        </div>
+        <label>实际结束时间<input type="date" id="projActualEnd"></label>
+        <label>项目备注<textarea id="projNote" rows="3" placeholder="项目背景、关键节点等"></textarea></label>
+        <label class="checkbox-line"><input type="checkbox" id="projMine"> 与我相关（在标题前显示小红旗 🚩）</label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" data-close="workModal">取消</button>
+        <button class="btn-primary" id="saveWorkProject">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 模态：新建/编辑子任务 ============ -->
+  <div class="modal" id="taskModal" hidden>
+    <div class="modal-backdrop" data-close="taskModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="taskModalTitle">新增子任务</h3>
+        <button class="modal-close" data-close="taskModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <label>负责人<input type="text" id="taskOwner" placeholder="姓名"></label>
+        <label>子任务名称<input type="text" id="taskTitle" placeholder="例如：LOGO 初稿"></label>
+        <div class="form-row">
+          <label>截止日期<input type="date" id="taskDeadline"></label>
+          <label>状态
+            <select id="taskStatus">
+              <option value="pending">待开始</option>
+              <option value="progress">进行中</option>
+              <option value="done">已完成</option>
+            </select>
+          </label>
+        </div>
+        <label>备注<textarea id="taskNote" rows="2"></textarea></label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" data-close="taskModal">取消</button>
+        <button class="btn-primary" id="saveTask">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 模态：回收站 ============ -->
+  <div class="modal" id="trashModal" hidden>
+    <div class="modal-backdrop" data-close="trashModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>任务回收站</h3>
+        <button class="modal-close" data-close="trashModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-tip">删除的项目与子任务会先进入这里，可随时恢复；「彻底删除」后不可恢复。</p>
+        <div class="trash-list" id="trashList"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" id="emptyTrash">清空回收站</button>
+        <button class="btn-primary" data-close="trashModal">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 模态：公众号文章 ============ -->
+  <div class="modal" id="portfolioModal" hidden>
+    <div class="modal-backdrop" data-close="portfolioModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="portfolioModalTitle">添加公众号文章</h3>
+        <button class="modal-close" data-close="portfolioModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <label>文章标题<input type="text" id="portfolioName" placeholder="例如：品牌设计的底层逻辑"></label>
+        <label>文章链接<input type="text" id="portfolioUrl" placeholder="https://mp.weixin.qq.com/s/..."></label>
+        <label>标签（用逗号分隔）<input type="text" id="portfolioTags" placeholder="品牌, 方法论"></label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" data-close="portfolioModal">取消</button>
+        <button class="btn-primary" id="savePortfolio">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 模态：设计项目 ============ -->
+  <div class="modal" id="designProjectModal" hidden>
+    <div class="modal-backdrop" data-close="designProjectModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="designProjectModalTitle">新建设计项目</h3>
+        <button class="modal-close" data-close="designProjectModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <label>项目名称<input type="text" id="designProjectName" placeholder="例如：某茶饮品牌 VI"></label>
+        <label>项目备注<textarea id="designProjectNote" rows="2" placeholder="项目说明"></textarea></label>
+        <div class="dp-image-manager" id="dpImageManager"></div>
+        <label class="btn-upload-line">＋ 添加图片（可多选）<input type="file" id="designProjectInput" accept="image/*" multiple hidden></label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" data-close="designProjectModal">取消</button>
+        <button class="btn-primary" id="saveDesignProject">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 模态：编辑站酷主页 ============ -->
+  <div class="modal" id="zcoolModal" hidden>
+    <div class="modal-backdrop" data-close="zcoolModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>编辑站酷主页</h3>
+        <button class="modal-close" data-close="zcoolModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <label>站酷主页链接<input type="text" id="zcoolUrlInput" placeholder="https://www.zcool.com.cn/u/..."></label>
+        <label>显示标题<input type="text" id="zcoolTitleInput" placeholder="卖设计 · 站酷"></label>
+        <label>封面图片<input type="file" id="zcoolCoverInput" accept="image/*"></label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" data-close="zcoolModal">取消</button>
+        <button class="btn-primary" id="saveZcool">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 设计项目全屏查看（16:9 轮播） ============ -->
+  <div class="dp-lightbox" id="dpLightbox" hidden aria-hidden="true">
+    <div class="dp-lightbox-backdrop" id="dpLightboxBackdrop"></div>
+    <button class="dp-lightbox-close" id="dpLightboxClose" aria-label="关闭">×</button>
+    <div class="dp-lightbox-title" id="dpLightboxTitle"></div>
+    <div class="dp-stage">
+      <div class="dp-lightbox-track" id="dpLightboxTrack"></div>
+      <button class="dp-nav dp-prev" id="dpPrev" aria-label="上一张">‹</button>
+      <button class="dp-nav dp-next" id="dpNext" aria-label="下一张">›</button>
+    </div>
+    <div class="dp-dots" id="dpDots"></div>
+    <div class="dp-counter" id="dpCounter"></div>
+  </div>
+
+  <!-- ============ 模态：云端共享设置 ============ -->
+  <div class="modal" id="settingsModal" hidden>
+    <div class="modal-backdrop" data-close="settingsModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>云端共享设置</h3>
+        <button class="modal-close" data-close="settingsModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-tip">使用 JSONBin.io（免费）作为共享后端。注册后在 API Keys 页面复制 <b>X-Master-Key</b> 粘贴到下方。分享链接会携带该 Key，<b>请确保只分享给信任的人</b>，建议用专门的小号账号而非主力账号。</p>
+        <label>JSONBin API Key<input type="text" id="jsonbinKey" placeholder="X-Master-Key" autocomplete="off"></label>
+        <label>你的名字（用于修改记录）<input type="text" id="editorName" placeholder="例如：阿理"></label>
+        <div class="sync-box">
+          <h4>数据同步（电脑 ↔ 手机）</h4>
+          <p class="modal-tip">把本机数据备份到云端，再用手机打开恢复链接即可同步；或导出文件手动转移（不限大小）。</p>
+          <div class="sync-row">
+            <button class="btn-ghost" id="btnSyncPush">☁ 同步到云端</button>
+            <button class="btn-ghost" id="btnSyncPull">⬇ 从云端恢复</button>
+          </div>
+          <div class="sync-row">
+            <button class="btn-ghost" id="btnExport">📤 导出备份</button>
+            <button class="btn-ghost" id="btnImport">📥 导入备份</button>
+          </div>
+          <input type="file" id="importFile" accept="application/json,.json" hidden>
+          <div class="sync-result" id="syncResult" hidden>
+            <p class="modal-tip">复制下面的恢复链接，在手机浏览器打开即可自动同步：</p>
+            <label>恢复链接<input type="text" id="syncResultLink" readonly></label>
+            <p class="modal-tip">恢复码（手动填到手机「从云端恢复」）：<b id="syncResultCode"></b></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" data-close="settingsModal">取消</button>
+        <button class="btn-primary" id="saveSettings">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 模态：分享结果 ============ -->
+  <div class="modal" id="shareResultModal" hidden>
+    <div class="modal-backdrop" data-close="shareResultModal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>分享链接已生成</h3>
+        <button class="modal-close" data-close="shareResultModal" aria-label="关闭">×</button>
+      </div>
+      <div class="modal-body">
+        <p id="shareResultDesc" class="modal-tip"></p>
+        <label>分享链接（已含访问凭证，直接发给对方即可）<input type="text" id="shareResultLink" readonly></label>
+        <button class="btn-primary" id="copyShareLink">复制链接</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Toast ============ -->
+  <div class="toast" id="toast" hidden></div>
+
+  <!-- ============ ima 二维码弹窗 ============ -->
+  <div class="ima-qr-modal" id="imaQrModal" hidden>
+    <div class="ima-qr-modal-box">
+      <img src="ima-qr.png" alt="ima 知识库二维码">
+      <button class="ima-qr-close" id="closeImaQr">关闭</button>
+    </div>
+  </div>
+
+  <script src="solarlunar.min.js?v=m20260816h"></script>
+  <script>window.solarLunar = (window.solarLunar && window.solarLunar.default) ? window.solarLunar.default : window.solarLunar;</script>
+  <script src="app.js?v=m20260816z7"></script>
+  <!-- 安装到主屏幕 提示横幅 -->
+  <div class="install-banner" id="installBanner" hidden>
+    <div class="ib-text">把「卖设计」装到手机，像 App 一样随时打开 📲</div>
+    <button class="ib-btn" id="installBtn" type="button">安装</button>
+    <button class="ib-close" id="installClose" type="button" aria-label="关闭提示">×</button>
+  </div>
+</body>
+</html>

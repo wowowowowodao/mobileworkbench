@@ -1,0 +1,1393 @@
+{
+  "generatedAt": "2026-08-16T02:04:14.755093Z",
+  "source": "中国天气网",
+  "default": "郑州",
+  "cities": {
+    "北京": {
+      "name": "北京",
+      "code": "101010100",
+      "temp": 23,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "西南风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "晴转多云",
+        "icon": "☀️",
+        "high": 32,
+        "low": 24,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日晴转多云",
+        "warn": false
+      }
+    },
+    "上海": {
+      "name": "上海",
+      "code": "101020100",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 0级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "阴转多云",
+        "icon": "⛅",
+        "high": 32,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日阴转多云",
+        "warn": false
+      }
+    },
+    "广州": {
+      "name": "广州",
+      "code": "101280101",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 34,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "深圳": {
+      "name": "深圳",
+      "code": "101280601",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨",
+        "icon": "⛈️",
+        "high": 32,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨",
+        "warn": true
+      }
+    },
+    "成都": {
+      "name": "成都",
+      "code": "101270101",
+      "temp": 29,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "东北风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "阵雨转大雨",
+        "icon": "🌧️",
+        "high": 26,
+        "low": 22,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日阵雨转大雨",
+        "warn": true
+      }
+    },
+    "杭州": {
+      "name": "杭州",
+      "code": "101210101",
+      "temp": 27,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云转阴",
+        "icon": "⛅",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云转阴",
+        "warn": false
+      }
+    },
+    "南京": {
+      "name": "南京",
+      "code": "101190101",
+      "temp": 29,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "东北风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云",
+        "icon": "⛅",
+        "high": 32,
+        "low": 24,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云",
+        "warn": false
+      }
+    },
+    "武汉": {
+      "name": "武汉",
+      "code": "101200101",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西北风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云转晴",
+        "icon": "☀️",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云转晴",
+        "warn": false
+      }
+    },
+    "西安": {
+      "name": "西安",
+      "code": "101110101",
+      "temp": 28,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "南风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨",
+        "icon": "🌧️",
+        "high": 29,
+        "low": 23,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨",
+        "warn": false
+      }
+    },
+    "重庆": {
+      "name": "重庆",
+      "code": "101040100",
+      "temp": 34,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "东北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云",
+        "icon": "⛅",
+        "high": 39,
+        "low": 29,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云",
+        "warn": false
+      }
+    },
+    "天津": {
+      "name": "天津",
+      "code": "101030100",
+      "temp": 28,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "西风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "晴转多云",
+        "icon": "☀️",
+        "high": 32,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日晴转多云",
+        "warn": false
+      }
+    },
+    "沈阳": {
+      "name": "沈阳",
+      "code": "101070101",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东南风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转晴",
+        "icon": "🌧️",
+        "high": 26,
+        "low": 20,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转晴",
+        "warn": true
+      }
+    },
+    "哈尔滨": {
+      "name": "哈尔滨",
+      "code": "101050101",
+      "temp": 26,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东南风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨转多云",
+        "icon": "🌧️",
+        "high": 27,
+        "low": 20,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨转多云",
+        "warn": false
+      }
+    },
+    "长春": {
+      "name": "长春",
+      "code": "101060101",
+      "temp": 25,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "南风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨转晴",
+        "icon": "🌧️",
+        "high": 29,
+        "low": 20,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨转晴",
+        "warn": false
+      }
+    },
+    "济南": {
+      "name": "济南",
+      "code": "101120101",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云",
+        "icon": "⛅",
+        "high": 32,
+        "low": 22,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云",
+        "warn": false
+      }
+    },
+    "青岛": {
+      "name": "青岛",
+      "code": "101120201",
+      "temp": 29,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云",
+        "icon": "⛅",
+        "high": 30,
+        "low": 25,
+        "wind": "3-4级"
+      },
+      "upcoming": {
+        "text": "明日多云",
+        "warn": false
+      }
+    },
+    "郑州": {
+      "name": "郑州",
+      "code": "101180101",
+      "temp": 30,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "西风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云转阴",
+        "icon": "⛅",
+        "high": 31,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云转阴",
+        "warn": false
+      }
+    },
+    "长沙": {
+      "name": "长沙",
+      "code": "101250101",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云",
+        "icon": "⛅",
+        "high": 34,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云",
+        "warn": false
+      }
+    },
+    "南昌": {
+      "name": "南昌",
+      "code": "101240101",
+      "temp": 29,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "阴",
+        "icon": "☁️",
+        "high": 33,
+        "low": 27,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日阴",
+        "warn": false
+      }
+    },
+    "福州": {
+      "name": "福州",
+      "code": "101230101",
+      "temp": 32,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东南风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨",
+        "icon": "🌧️",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨",
+        "warn": false
+      }
+    },
+    "厦门": {
+      "name": "厦门",
+      "code": "101230201",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨转阴",
+        "icon": "⛈️",
+        "high": 31,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨转阴",
+        "warn": true
+      }
+    },
+    "南宁": {
+      "name": "南宁",
+      "code": "101300101",
+      "temp": 27,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "阵雨转中雨",
+        "icon": "🌧️",
+        "high": 33,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日阵雨转中雨",
+        "warn": true
+      }
+    },
+    "海口": {
+      "name": "海口",
+      "code": "101310101",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨转多云",
+        "icon": "🌧️",
+        "high": 34,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨转多云",
+        "warn": false
+      }
+    },
+    "三亚": {
+      "name": "三亚",
+      "code": "101310201",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云",
+        "icon": "⛅",
+        "high": 33,
+        "low": 26,
+        "wind": "4-5级转3-4级"
+      },
+      "upcoming": {
+        "text": "明日多云",
+        "warn": false
+      }
+    },
+    "贵阳": {
+      "name": "贵阳",
+      "code": "101260101",
+      "temp": 25,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东南风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云转阵雨",
+        "icon": "🌧️",
+        "high": 30,
+        "low": 20,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云转阵雨",
+        "warn": false
+      }
+    },
+    "昆明": {
+      "name": "昆明",
+      "code": "101290101",
+      "temp": 21,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "西风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转阵雨",
+        "icon": "🌧️",
+        "high": 25,
+        "low": 18,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转阵雨",
+        "warn": true
+      }
+    },
+    "兰州": {
+      "name": "兰州",
+      "code": "101160101",
+      "temp": 24,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "东北风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨转多云",
+        "icon": "🌧️",
+        "high": 27,
+        "low": 18,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨转多云",
+        "warn": false
+      }
+    },
+    "银川": {
+      "name": "银川",
+      "code": "101170101",
+      "temp": 23,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "西北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨转多云",
+        "icon": "⛈️",
+        "high": 24,
+        "low": 14,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨转多云",
+        "warn": true
+      }
+    },
+    "西宁": {
+      "name": "西宁",
+      "code": "101150101",
+      "temp": 16,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "东风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨转晴",
+        "icon": "🌧️",
+        "high": 22,
+        "low": 10,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨转晴",
+        "warn": false
+      }
+    },
+    "拉萨": {
+      "name": "拉萨",
+      "code": "101140101",
+      "temp": 14,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨",
+        "icon": "🌧️",
+        "high": 21,
+        "low": 12,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨",
+        "warn": false
+      }
+    },
+    "乌鲁木齐": {
+      "name": "乌鲁木齐",
+      "code": "101130101",
+      "temp": 27,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "南风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "晴转多云",
+        "icon": "☀️",
+        "high": 35,
+        "low": 24,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日晴转多云",
+        "warn": false
+      }
+    },
+    "石家庄": {
+      "name": "石家庄",
+      "code": "101090101",
+      "temp": 24,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "西北风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "晴转雷阵雨",
+        "icon": "⛈️",
+        "high": 31,
+        "low": 24,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日晴转雷阵雨",
+        "warn": true
+      }
+    },
+    "太原": {
+      "name": "太原",
+      "code": "101100101",
+      "temp": 23,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "南风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云转中雨",
+        "icon": "🌧️",
+        "high": 31,
+        "low": 20,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云转中雨",
+        "warn": true
+      }
+    },
+    "呼和浩特": {
+      "name": "呼和浩特",
+      "code": "101080101",
+      "temp": 23,
+      "weather": "晴",
+      "icon": "☀️",
+      "wind": "西南风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "阴转多云",
+        "icon": "⛅",
+        "high": 28,
+        "low": 16,
+        "wind": "3-4级转<3级"
+      },
+      "upcoming": {
+        "text": "明日阴转多云",
+        "warn": false
+      }
+    },
+    "大连": {
+      "name": "大连",
+      "code": "101070201",
+      "temp": 28,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "东北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "阴转多云",
+        "icon": "⛅",
+        "high": 30,
+        "low": 25,
+        "wind": "3-4级"
+      },
+      "upcoming": {
+        "text": "明日阴转多云",
+        "warn": false
+      }
+    },
+    "苏州": {
+      "name": "苏州",
+      "code": "101190401",
+      "temp": 29,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "北风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "晴转多云",
+        "icon": "☀️",
+        "high": 31,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日晴转多云",
+        "warn": false
+      }
+    },
+    "无锡": {
+      "name": "无锡",
+      "code": "101190201",
+      "temp": 29,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "东北风 3级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "晴转多云",
+        "icon": "☀️",
+        "high": 32,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日晴转多云",
+        "warn": false
+      }
+    },
+    "宁波": {
+      "name": "宁波",
+      "code": "101210401",
+      "temp": 29,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "西风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨转多云",
+        "icon": "🌧️",
+        "high": 31,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨转多云",
+        "warn": false
+      }
+    },
+    "温州": {
+      "name": "温州",
+      "code": "101210701",
+      "temp": 29,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 0级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨",
+        "icon": "🌧️",
+        "high": 33,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨",
+        "warn": false
+      }
+    },
+    "绍兴": {
+      "name": "台州",
+      "code": "101210601",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东北风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨",
+        "icon": "🌧️",
+        "high": 32,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨",
+        "warn": true
+      }
+    },
+    "金华": {
+      "name": "金华",
+      "code": "101210901",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东南风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨",
+        "icon": "🌧️",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨",
+        "warn": false
+      }
+    },
+    "台州": {
+      "name": "舟山",
+      "code": "101211101",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西北风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨",
+        "icon": "🌧️",
+        "high": 31,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨",
+        "warn": false
+      }
+    },
+    "嘉兴": {
+      "name": "嘉兴",
+      "code": "101210301",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云转阴",
+        "icon": "⛅",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云转阴",
+        "warn": false
+      }
+    },
+    "湖州": {
+      "name": "湖州",
+      "code": "101210201",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "多云转阴",
+        "icon": "⛅",
+        "high": 31,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日多云转阴",
+        "warn": false
+      }
+    },
+    "衢州": {
+      "name": "衢州",
+      "code": "101211001",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东北风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "阴",
+        "icon": "☁️",
+        "high": 34,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日阴",
+        "warn": false
+      }
+    },
+    "东莞": {
+      "name": "揭阳",
+      "code": "101281901",
+      "temp": 32,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "大雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日大雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "佛山": {
+      "name": "中山",
+      "code": "101281701",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 33,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "珠海": {
+      "name": "珠海",
+      "code": "101280701",
+      "temp": 32,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨转中雨",
+        "icon": "⛈️",
+        "high": 32,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨转中雨",
+        "warn": true
+      }
+    },
+    "中山": {
+      "name": "中山",
+      "code": "101281701",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 33,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "惠州": {
+      "name": "惠州",
+      "code": "101280301",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 34,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "江门": {
+      "name": "福田",
+      "code": "101280603",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨",
+        "icon": "⛈️",
+        "high": 32,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨",
+        "warn": true
+      }
+    },
+    "肇庆": {
+      "name": "肇庆",
+      "code": "101280901",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西南风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨",
+        "icon": "⛈️",
+        "high": 34,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨",
+        "warn": true
+      }
+    },
+    "湛江": {
+      "name": "湛江",
+      "code": "101281001",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨转中雨",
+        "icon": "⛈️",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨转中雨",
+        "warn": true
+      }
+    },
+    "茂名": {
+      "name": "江门",
+      "code": "101281101",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西北风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 34,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "汕头": {
+      "name": "梅州",
+      "code": "101280401",
+      "temp": 29,
+      "weather": "阴",
+      "icon": "☁️",
+      "wind": "东风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨",
+        "icon": "⛈️",
+        "high": 35,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨",
+        "warn": true
+      }
+    },
+    "揭阳": {
+      "name": "云浮",
+      "code": "101281401",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东南风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨",
+        "icon": "⛈️",
+        "high": 35,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨",
+        "warn": true
+      }
+    },
+    "潮州": {
+      "name": "河源",
+      "code": "101281201",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西南风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨",
+        "icon": "⛈️",
+        "high": 34,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨",
+        "warn": true
+      }
+    },
+    "韶关": {
+      "name": "韶关",
+      "code": "101280201",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨",
+        "icon": "⛈️",
+        "high": 35,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨",
+        "warn": true
+      }
+    },
+    "清远": {
+      "name": "清远",
+      "code": "101281301",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东南风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 34,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "河源": {
+      "name": "顺德",
+      "code": "101280801",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 2级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 35,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "梅州": {
+      "name": "吴川",
+      "code": "101281002",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东北风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨转中雨",
+        "icon": "⛈️",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨转中雨",
+        "warn": true
+      }
+    },
+    "汕尾": {
+      "name": "饶平",
+      "code": "101281502",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "大雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 32,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日大雨转雷阵雨",
+        "warn": true
+      }
+    },
+    "云浮": {
+      "name": "吴川",
+      "code": "101281002",
+      "temp": 31,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "东北风 2级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "雷阵雨转中雨",
+        "icon": "⛈️",
+        "high": 33,
+        "low": 26,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日雷阵雨转中雨",
+        "warn": true
+      }
+    },
+    "丽水": {
+      "name": "丽水",
+      "code": "101210801",
+      "temp": 27,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨转阴",
+        "icon": "🌧️",
+        "high": 35,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨转阴",
+        "warn": false
+      }
+    },
+    "舟山": {
+      "name": "舟山",
+      "code": "101211101",
+      "temp": 28,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "西北风 1级",
+      "time": "08-16 09:50",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "小雨",
+        "icon": "🌧️",
+        "high": 31,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日小雨",
+        "warn": false
+      }
+    },
+    "阳江": {
+      "name": "阳江",
+      "code": "101281801",
+      "temp": 30,
+      "weather": "多云",
+      "icon": "⛅",
+      "wind": "北风 1级",
+      "time": "08-16 09:45",
+      "forecast3h": [],
+      "tomorrow": {
+        "weather": "中雨转雷阵雨",
+        "icon": "⛈️",
+        "high": 33,
+        "low": 25,
+        "wind": "<3级"
+      },
+      "upcoming": {
+        "text": "明日中雨转雷阵雨",
+        "warn": true
+      }
+    }
+  }
+}

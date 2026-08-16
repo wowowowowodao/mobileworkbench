@@ -1,0 +1,13 @@
+# 日志与临时文件
+server.log
+*.log
+err.txt
+push_test.log
+verify*.mjs
+*.tmp
+
+# 依赖
+node_modules/
+
+# 归档（历史大文件，无需发布）
+share-assets/_archive/
